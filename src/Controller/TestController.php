@@ -38,20 +38,21 @@ class TestController extends AbstractController
      */
     public function index()
     {
-        $ms = $this->getDoctrine()->getRepository(Movie::class)->findAll();
-        dump($ms);
+        $movies = $this->getDoctrine()->getRepository(Movie::class)->findAll();
+        dump($movies);
         return $this->render('test/index.html.twig', [
-          "ms" => $ms
+          "movies" => $movies
         ]);
     }
 
     /**
      * @Route("/single/{id}", name="single_id")
      */
-    public function show(Movie $a)
+    public function show(Movie $movie)
     {
+
         return $this->render('test/single.html.twig', [
-          "a" => $a
+          "movie" => $movie, 
         ]);
     }
 

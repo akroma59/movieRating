@@ -5,7 +5,7 @@
 
 {% block main %}
 <!-- Plus tar on essaierra d'intégrer un formulair de notation sur page -->
-<form>
+{# <form>
   <div class="form-group">
     <label for="exampleFormControlInput1">Email address</label>
     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
@@ -34,16 +34,29 @@
     <label for="exampleFormControlTextarea1">Example textarea</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-</form>
-{% for m in ms %}
-<div class="card" style="width: 18rem;">
-<img class="card-img-top" src="..." alt="Card image cap">
-<div class="card-body">
-<h5 class="card-title">{{ m.title }}</h5>
-<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-<a href="{{path("evaluation_id", {"id" : m.id})}}" class="btn btn-primary">Evaluer</a>
-<a href="{{path("single_id", {"id" : m.id})}}" class="btn btn-primary">Voir</a>
-</div>
-</div>
+</form> #}
+{% for movie in movies %}
+<table class="table table-dark text-center">
+  <thead>
+    <tr>
+      <th scope="col" class="w-50">sommaire</th>
+      <th scope="col">date</th>
+      <th scope="col">type</th>
+      <th scope="col">auteur</th>
+      <th scope="col">Evaluer</th>
+      <th scope="col">Voir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ movie.sumary }}</td>
+      <td>{{ movie.releaseYear|date("Y-m-d") }}</td>
+      <td>{{ movie.type }}</td>
+      <td>{{ movie.author }}</td>
+      <td><a href="{{path("evaluation_id", {"id" : movie.id})}}" class="btn btn-primary">Evaluer</a></td>
+      <td><a href="{{path("single_id", {"id" : movie.id})}}" class="btn btn-primary">Voir</a></td>
+    </tr>
+  </tbody>
+</table>
 {% endfor %}
 {% endblock %}
