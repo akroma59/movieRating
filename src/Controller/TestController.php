@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Movi;
+use App\Entity\Movie;
 use App\Entity\Evaluation;
-use Symfony\Component\HttpFoundation\Request
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 class TestController extends AbstractController
@@ -24,58 +28,60 @@ class TestController extends AbstractController
         for ($i=0; $i < count($ms) ; $i) {
           $notes = $ms[$i]->getEvaluations()->getGrade();
         }
-        return $this->render('test/index.html.twig', [
-          "ms" => $ms
-        ]);
+        // return $this->render('test/index.html.twig', [
+        //   "ms" => $ms
+        // ]);
     }
 
     /**
-     * @Route("/", name="index")
+     * @Route("", name="index")
      */
     public function index()
     {
-        $ms = $this->getDoctrine()->getRepository(Movie::class)->findAll;
+        $ms = $this->getDoctrine()->getRepository(Movie::class)->findAll();
+        dump($ms);
         return $this->render('test/index.html.twig', [
           "ms" => $ms
         ]);
     }
 
     /**
-     * @Route("/single/{id}", name="index")
+     * @Route("/single/{id}", name="single_id")
      */
-    public function show(Movi $a)
+    public function show(Movie $a)
     {
-        return $this->render('single.html.twig' [
+        return $this->render('test/single.html.twig', [
           "a" => $a
         ]);
     }
 
     /**
-     * @Route("/evaluation/{id}", name="index")
-     * @Isgranted("ROLE")
-     */
-    public function rate(Movi $b, Request $c)
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/evaluation/{id}", name="evaluation_id")
+     *
+     */      
+    public function rate(Movie $movie, Request $request)
     {
-        $d = new Evaluation();
+        $eval = new Evaluation();
 
-        $form = $this->createFormBuilder($d)
-            ->add('comment')
-            ->add('grade')
+        $form = $this->createFormBuilder($eval)
+            ->add('comment', TextType::class)
+            ->add('grade', IntegerType::class)
             ->add('save', SubmitType::class)
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-          $d.setMovie($b);
-          $d.setUser($u);
+          $eval->setMovie($movie);
+          $eval->setUser($this->getUser());
           $entityManager = $this->getDoctrine()->getManager();
-          $entityManager->persist($d);
+          $entityManager->persist($eval);
           $entityManager->flush();
         }
 
         return $this->render('test/evaluation.html.twig', [
-          "b" => $b,
+          "movie" => $movie,
           "form" => $form->createView()
         ]);
     }
