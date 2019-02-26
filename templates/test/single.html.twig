@@ -1,9 +1,25 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}{{ a.title }}{% endblock %}
-
-{% block pageTitle %} {{ a.title }} {% endblock %}
+{% block pageTitle %} {{ movie.title }} {% endblock %}
 
 {% block main %}
+<table class="table table-dark text-center">
+  <thead>
+    <tr>
+      <th scope="col" class="w-50">sommaire</th>
+      <th scope="col">date</th>
+      <th scope="col">type</th>
+      <th scope="col">auteur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ movie.sumary }}</td>
+      <td>{{ movie.releaseYear|date("Y-m-d") }}</td>
+      <td>{{ movie.type }}</td>
+      <td>{{ movie.author }}</td>
+    </tr>
+  </tbody>
+</table>
 
 {% endblock %}
