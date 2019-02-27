@@ -19,7 +19,7 @@ class MovieFixtures extends Fixture
         $movie = new Movie();
         $movie->setTitle($faker->text($maxNbChars = 50, $indexSize = 1));
         $movie->setSumary($faker->text($maxNbChars = 400));
-        $movie->setReleaseYear(new \DateTime($faker->date($format = 'Y-m-d', $max = 'now')));
+        $movie->setReleaseYear($faker->dateTime($max = 'now', $timezone = null));
         $movie->setType("Horror");
         $movie->setAuthor($faker->firstNameMale() . " " . $faker->lastName());
         $manager->persist($movie);

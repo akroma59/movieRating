@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Evaluation;
+use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -22,19 +23,19 @@ class EvaluationRepository extends ServiceEntityRepository
     // /**
     //  * @return Evaluation[] Returns an array of Evaluation objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    
+    // public function getEvalByMovieId(Evaluation $evaluation , Movie $movie)
+    // {
+    //     return $this->createQueryBuilder('e')
+    //         ->select()
+    //         // ->leftJoin()            
+    //         // ->andWhere('e.movie_id = :m.id')
+    //         // ->setParameter('m.id', $movie)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     /*
     public function findOneBySomeField($value): ?Evaluation
