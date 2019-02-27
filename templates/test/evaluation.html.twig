@@ -3,7 +3,7 @@
 {% block title %}Evaluation{% endblock %}
 
 {% block pageTitle %}Evaluer : {{ movie.title }}{% endblock %}
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block main %}
 {{ form(form) }}
 {% endblock %}
