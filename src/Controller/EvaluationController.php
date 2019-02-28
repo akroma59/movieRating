@@ -37,7 +37,6 @@ class EvaluationController extends AbstractController
         $entityManager->persist($evaluation);
         $entityManager->flush();
         return $this->redirectToRoute('profil.id');
-        dump($data);
       }
     
         return $this->render('test/update.html.twig', [
