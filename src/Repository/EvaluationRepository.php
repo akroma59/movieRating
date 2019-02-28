@@ -20,6 +20,31 @@ class EvaluationRepository extends ServiceEntityRepository
         parent::__construct($registry, Evaluation::class);
     }
 
+    public function getBestEval(Movie $movie)
+    {
+        return $this->createQueryBuilder('e')
+                ->where('e.movie = :movie')
+                ->orderBy('e.grade', 'DESC')
+                ->setFirstResult( 0 )
+                ->setMaxResults( 3 )
+                ->setParameter('movie', $movie)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
+    public function getWorstEval(Movie $movie)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.movie = :movie')
+            ->orderBy('e.grade', 'ASC')
+            ->setFirstResult( 0 )
+            ->setMaxResults( 3 )
+            ->setParameter('movie', $movie)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     // /**
     //  * @return Evaluation[] Returns an array of Evaluation objects
     //  */
