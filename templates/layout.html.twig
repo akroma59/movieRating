@@ -6,13 +6,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="navbar-brand" href="">S'inscrire</a>
+        <a class="navbar-brand" href="{{path("app_register")}}">S'inscrire</a>
       </li> 
       <li class="nav-item">
-        <a class="navbar-brand" href="">Se connecter</a>
+        <a class="navbar-brand" href="{{path("app_login")}}">Se connecter</a>
       </li> 
       <li class="nav-item">
-        <a class="navbar-brand" href="{{path("app_logout")}}">Déconnexion </a>
+        <a class="navbar-brand" href="{{path("app_logout")}}">Déconnexion</a>
+      </li> 
+      <li class="nav-item">
+        <a class="navbar-brand" href="{{path("profil.id")}}">Mon compte</a>
       </li> 
     </ul>
   </div>
