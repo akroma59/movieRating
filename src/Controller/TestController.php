@@ -50,9 +50,11 @@ class TestController extends AbstractController
      */
     public function show(Movie $movie)
     {
-      $id = $movie->getId();
+      $bestEvals = $this->getDoctrine()->getRepository(Evaluation::class)->getBestEval($movie);
+      $worstEvals = $this->getDoctrine()->getRepository(Evaluation::class)->getWorstEval($movie);
+      dump ($worstEvals);
         return $this->render('test/single.html.twig', [
-          "movie" => $movie, 
+          "movie" => $movie, "bestEvals" => $bestEvals, "worstEvals" => $worstEvals
         ]);
     }
 
