@@ -40,11 +40,19 @@
       <td>{{ movie.releaseYear|date("Y-m-d") }}</td>
       <td>{{ movie.type }}</td>
       <td>{{ movie.author }}</td>
-      <td>{{ movie.getAverage() }}</td>
+      <td>
+      {% if movie.getAverage() %}
+      <p> {{ movie.getAverage() }} </p>
+      {% else %}
+        <p> Aucune note n'a été attribuer </p>
+      {% endif %}
+      </td>
+
     </tr>
   </tbody>
 </table>
 <div class="text-center my-4">
+  <a href="{{path("evaluation_id", {"id" : movie.id})}}" class="btn btn-primary">Evaluer</a>
   <a href="{{path("index")}}" class="btn btn-primary">Voir tout les films</a>
 </div>
 {% endblock %}

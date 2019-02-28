@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Profil{% endblock %}
+
+{% block pageTitle %} 
+  {# <div class="text-center my-4">
+    {{ user.name }} 
+  </div> #}
+{% endblock %}
+
+{% block main %}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="image du film">
+</div>
+
+<table class="table table-dark text-center">
+  <thead>
+    {% for eval in evals %}
+    <tr>
+        <th scope="col" class="w-50">Grade</th>
+            <td>{{ eval.grade }}</td>
+        <th scope="col">Commentaire</th>
+            <td>{{ eval.comment }}
+            <a href="{{path("update.eval", {"id" : eval.id})}}" class="btn btn-primary">Modif</a>
+            </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="text-center my-4">
+  <a href="{{path("index")}}" class="btn btn-primary">Voir tout les films</a>
+</div>
+{% endblock %}

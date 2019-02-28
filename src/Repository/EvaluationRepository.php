@@ -45,6 +45,17 @@ class EvaluationRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function getEvalByUser($user)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Evaluation[] Returns an array of Evaluation objects
     //  */

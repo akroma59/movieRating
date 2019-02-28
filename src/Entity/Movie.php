@@ -149,7 +149,6 @@ class Movie
         return $this;
     }
 
-    // VOIR SI C PAS MIEU DE FAIRE UNE MET DANS L'ENTIT POUR RECUPÉRAR LA NOTE MOYENE
     public function getAverage() 
     {
         $somme = 0;
@@ -158,6 +157,8 @@ class Movie
         $i++;
         $somme += $eval->getGrade();
         }
-        return $somme / $i;
+        if ($somme != 0 && $i != 0) {
+            return $somme / $i;
+        }
     }
 }
